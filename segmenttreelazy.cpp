@@ -23,7 +23,7 @@ using namespace std;
 #define maxn            100001
 			
  
- ll seg[4*maxn];
+ll seg[4*maxn];
 ll lazy[4*maxn];
 ll dt[maxn];
 

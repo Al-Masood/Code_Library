@@ -21,8 +21,6 @@ using namespace std;
 #define mod             1000000007
 #define inf             999999999999999999
 #define maxn            100001
-			
-
 
 ll cnt;
 ll par[maxn];
@@ -66,8 +64,6 @@ ll get_size(ll a){
 }
  
  
- 
- 
 int main()
 {
     ios::sync_with_stdio(0);
@@ -75,10 +71,29 @@ int main()
  
 
     ll t;
-    cin>>t;
+    t=1;
     while(t--){
-        ll n;
-        cin>>n;
+        cnt=0;
+        ll n, m;
+        cin>>n>>m;
+        vector<vector <ll>> v(m, vector <ll> (3)); 
+        ll ans=0;
+        l0(i, n) make_set(i);
+        l0(i, m){
+            ll a, b, c;
+            cin>>a>>b>>c;
+            v[i]={c, a, b};
+        }
+        sorted(v);
+
+        l0(i, m){
+            if(find(v[i][1])!=find(v[i][2])){
+                merge(v[i][1], v[i][2]);
+                ans+=v[i][0];
+            }
+        }
+        cout<<ans;
+        nl
     }
     return 0;
 }

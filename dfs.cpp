@@ -21,27 +21,18 @@ using namespace std;
 #define mod             1000000007
 #define inf             999999999999999999
 #define maxn            100001
-			
 
-vector <ll> primes;
-
-bool chk[100001];
-
-void sieve(){
-    for(ll i=2; i*i<=100000; i++){
-        if(!chk[i]){
-            for(ll j=i*i; j<=100000; j+=i) chk[j]=true;
+vector <ll> adj[maxn];
+bool visited[maxn];	
+void dfs(ll a){
+    if(!visited[a]){
+        visited[a]=true;
+        for(ll i=0; i<adj[a].size(); i++){
+            dfs(adj[a][i]);
         }
     }
-
-    for(ll i=2; i<=100000; i++){
-        if(!chk[i]) primes.pb(i);
-    }
+    return;
 }
-
- 
-
- 
  
 int main()
 {
@@ -50,10 +41,21 @@ int main()
  
 
     ll t;
-    cin>>t;
+    t=1;
     while(t--){
-        ll n;
-        cin>>n;
+        ll n, m;
+        cin>>n>>m;
+        l0(i, m){
+            ll a, b;
+            cin>>a>>b;
+            adj[a].pb(b);
+            adj[b].pb(a);
+        }
+        
+        for(ll i=1; i<=n; i++){
+            if(!visited[i]){
+                dfs(i);
+            }
+        }
     }
     return 0;
-}

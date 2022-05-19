@@ -1,3 +1,5 @@
+//Given a text x[0..n-1] and a pattern y[0..m-1] prints all occurrences of y[] in x[]
+
 #include <bits/stdc++.h>
  
 using namespace std;
@@ -22,25 +24,59 @@ using namespace std;
 #define inf             999999999999999999
 #define maxn            100001
 			
+ll f[maxn];
+vector <ll> ans;
 
-vector <ll> primes;
-
-bool chk[100001];
-
-void sieve(){
-    for(ll i=2; i*i<=100000; i++){
-        if(!chk[i]){
-            for(ll j=i*i; j<=100000; j+=i) chk[j]=true;
+void failure(string &y){
+    f[0]=0;
+    ll i=1;
+    ll len=0;
+    ll m=y.size();
+    while(i<m){
+        if(y[len]==y[i]){
+            len++;
+            f[i]=len;
+            i++;
         }
-    }
-
-    for(ll i=2; i<=100000; i++){
-        if(!chk[i]) primes.pb(i);
+        else{
+            if(len!=0){
+                len=f[len-1];
+            }
+            else{
+                f[i]=0;
+                i++;
+            }
+        }
     }
 }
 
+void kmp(string &x, string &y){
+    failure(y);
+    ll n=x.size();
+    ll m=y.size();
+    ll i=0;
+    ll j=0;
+    while(i<n){
+        if(x[i]==y[j]){
+            i++;
+            j++;
+            if(j==m){
+                ans.pb(i-j);
+                j=f[j-1];
+            }
+        }
+        else{
+            if(j!=0){
+                j=f[j-1];
+            }
+            else{
+                i++;
+            }
+        }
+    }
+}
  
-
+ 
  
  
 int main()
@@ -52,8 +88,10 @@ int main()
     ll t;
     cin>>t;
     while(t--){
-        ll n;
-        cin>>n;
+        string x, y;
+        cin>>x>>y;
+        kmp(x, y);
+        l0(i, ans.size()) cout<<ans[i]<<" ";
     }
     return 0;
 }

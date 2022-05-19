@@ -23,24 +23,47 @@ using namespace std;
 #define maxn            100001
 			
 
-vector <ll> primes;
-
-bool chk[100001];
-
-void sieve(){
-    for(ll i=2; i*i<=100000; i++){
-        if(!chk[i]){
-            for(ll j=i*i; j<=100000; j+=i) chk[j]=true;
+struct node{
+    bool end;
+    node* next[26];
+    node(){
+        end=false;
+        for(ll i=0; i<26; i++){
+            next[i]=NULL;
         }
     }
+}*root;
 
-    for(ll i=2; i<=100000; i++){
-        if(!chk[i]) primes.pb(i);
+void insert(string str, ll len){
+    node* curr=root;
+    for(ll i=0; i<len; i++){
+        ll ch=str[i]-'a';
+        if(curr->next[ch]==NULL){
+            curr->next[ch]=new node();
+        }
+        curr=curr->next[ch];
     }
+    curr->end=true;
 }
 
- 
+bool search(string str, ll len){
+    node* curr=root;
+    for(ll i=0; i<len; i++){
+        ll ch=str[i]-'a';
+        if(curr->next[ch]==NULL){
+            return false;
+        }
+        curr=curr->next[ch];
+    }
+    return curr->end;
+}
 
+void del(node* curr){
+    for(ll i=0; i<26; i++){
+        if(curr->next[i]) del(curr->next[i]);
+    }
+    delete(curr);
+}
  
  
 int main()

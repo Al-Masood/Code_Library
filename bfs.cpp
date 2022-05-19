@@ -22,8 +22,25 @@ using namespace std;
 #define inf             999999999999999999
 #define maxn            100001
 			
- 
- 
+vector <ll> adj[maxn];
+ll dis[maxn]; 
+
+void bfs(ll n, ll st){
+    l1(i, n) dis[i]=-1;
+    queue <ll> q;
+    q.push(st);
+    dis[st]=0;
+    while(!q.empty()){
+        ll a=q.front();
+        q.pop();
+        for(ll i=0; i<adj[a].size(); i++){
+            if(dis[adj[a][i]]==-1){
+                dis[adj[a][i]]=dis[a]+1;
+                q.push(adj[a][i]);       
+            }
+        }
+    }
+}
  
  
  
@@ -38,22 +55,6 @@ int main()
     while(t--){
         ll n;
         cin>>n;
-        vector <ll> adj[n];
-        ll dis[n+1];
-        l1(i, n) dis[i]=-1;
-        queue <ll> q;
-        q.push(1);
-        dis[1]=0;
-        while(!q.empty()){
-            ll a=q.front();
-            q.pop();
-            for(ll i=0; i<adj[a].size(); i++){
-                if(dis[adj[a][i]]==-1){
-                    dis[adj[a][i]]=-dis[a]+1;
-                    q.push(adj[a][i]);       
-                }
-            }
-        }
     }
     return 0;
 }

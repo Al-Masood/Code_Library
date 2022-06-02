@@ -18,29 +18,32 @@ using namespace std;
 #define mod             1000000007
 #define inf             999999999999999999
 #define maxn            100001
+			
 
 
 
-ll fac[maxn];
+vector <pair<ll, ll>> adj[maxn];
+vector <ll> dist(maxn, inf);
+vector <bool> visited(maxn);
 
-void factorial(){
-    fac[0]=1;
-    l1(i, maxn-1) fac[i]=(fac[i-1]*i)%mod;
-}
- 
-ll pmod(ll a, ll b){
-    if(b==0) return 1;
-    ll temp=pmod(a, b/2);
-    if(b & 1) return (((a*temp)%mod)*temp)%mod;
-    else return (temp*temp)%mod; 
-}
-
-ll ncr(ll n, ll r){
-    ll a=fac[n];
-    ll b=fac[n-r]*fac[r];
-    b%=mod;
-    b=pmod(b, mod-2);
-    return (a*b)%mod;
+void dijkstra(ll s){
+    priority_queue<pair<ll, ll>> pq;
+    pq.push({0, s});
+    dist[s]=0;
+    while(!pq.empty()){
+        ll u=pq.top().second;
+        pq.pop();
+        if(visited[u]) continue;
+        visited[u]=true;
+        for(ll i=0; i<adj[u].size(); i++){e
+           ll v=adj[u][i].first;
+           ll w=adj[u][i].second;
+           if(dis[v]>dis[u]+w){
+               dis[v]=dis[u]+w;
+               pq.push({-dis[v], v});
+           } 
+        }
+    }
 }
 
 
@@ -50,7 +53,7 @@ int main()
     ios::sync_with_stdio(0);
     cin.tie(0), cout.tie(0);
  
-    factorial();
+
     ll t;
     cin>>t;
     while(t--){

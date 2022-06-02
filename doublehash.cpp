@@ -15,14 +15,13 @@ using namespace std;
 #define cases(tc)       cout<<"Case #"<<tc<<": "
 #define nl              cout<<"\n";
 #define pi              acos(-1)
-#define mod             2000000063
 #define inf             999999999999999999
 #define maxn            100001
 			
 
 
             
-ll base1 = 1e9+21, base2 = 1e9+181;
+ll base1 = 1e9+21, base2 = 1e9+181, mod=2000000063;
 string s;
 ll pw1[maxn], pw2[maxn], len;
 

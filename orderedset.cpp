@@ -21,44 +21,18 @@ using namespace std;
 
 
 
-vector <ll> primes;
-vector <ll> fac;
-ll chk[maxn];
 
-void sieve(){
-    for(ll i=2; i*i<maxn; i++){
-        if(!chk[i]){
-            for(ll j=i*i; j<maxn; j+=i) if(!chk[j]) chk[j]=i;
-        }
-    }
-
-    for(ll i=2; i<maxn; i++){
-        if(!chk[i]) chk[i]=i;
-    }
-
-    for(ll i=2; i<maxn; i++){
-        if(chk[i]==i) primes.pb(i);
-    }
-}
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+  
+#define ordered_set tree<int, null_type,less<int>, rb_tree_tag,tree_order_statistics_node_update>
+//declare ordered_set setname
+//setname.find_by_order(k): It returns to an iterator to the kth element (counting from zero) in the set in O(logn)
+//setname.order_of_key(k) : It returns to the number of items that are strictly smaller than our item k in O(logn) time
 
 
-void factors(ll a){
-    fac.clear();
-    ll val=a;
-    for(ll i=0; i<primes.size() && primes[i]*primes[i]<=a; i++){
-        if(!(val%primes[i])){
-            fac.pb(primes[i]);
-            while(!(val%primes[i])){
-                val/=primes[i];
-            }
-        }
-    }
-    if(val!=1) fac.pb(val);
-}
-
-
-
-
+ 
 int main()
 {
     ios::sync_with_stdio(0);
@@ -73,4 +47,3 @@ int main()
     }
     return 0;
 }
-

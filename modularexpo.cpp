@@ -15,15 +15,14 @@ using namespace std;
 #define cases(tc)       cout<<"Case #"<<tc<<": "
 #define nl              cout<<"\n";
 #define pi              acos(-1)
-#define mod             1000000007
 #define inf             999999999999999999
 #define maxn            100001
 
 
 
-ll pmod(ll a, ll b){
+ll pmod(ll a, ll b, ll mod){
     if(b==0) return 1;
-    ll temp=pmod(a, b/2);
+    ll temp=pmod(a, b/2, mod);
     if(b & 1) return (((a*temp)%mod)*temp)%mod;
     else return (temp*temp)%mod; 
 }

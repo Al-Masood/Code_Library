@@ -21,44 +21,13 @@ using namespace std;
 
 
 
-vector <ll> primes;
-vector <ll> fac;
-ll chk[maxn];
 
-void sieve(){
-    for(ll i=2; i*i<maxn; i++){
-        if(!chk[i]){
-            for(ll j=i*i; j<maxn; j+=i) if(!chk[j]) chk[j]=i;
-        }
-    }
-
-    for(ll i=2; i<maxn; i++){
-        if(!chk[i]) chk[i]=i;
-    }
-
-    for(ll i=2; i<maxn; i++){
-        if(chk[i]==i) primes.pb(i);
-    }
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+int my_rand(int l, int r) {
+    return uniform_int_distribution<int>(l, r) (rng);
 }
 
-
-void factors(ll a){
-    fac.clear();
-    ll val=a;
-    for(ll i=0; i<primes.size() && primes[i]*primes[i]<=a; i++){
-        if(!(val%primes[i])){
-            fac.pb(primes[i]);
-            while(!(val%primes[i])){
-                val/=primes[i];
-            }
-        }
-    }
-    if(val!=1) fac.pb(val);
-}
-
-
-
-
+ 
 int main()
 {
     ios::sync_with_stdio(0);
@@ -73,4 +42,3 @@ int main()
     }
     return 0;
 }
-

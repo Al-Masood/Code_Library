@@ -23,17 +23,21 @@ using namespace std;
 
 vector <ll> primes;
 
-bool chk[100001];
+ll chk[maxn];
 
 void sieve(){
-    for(ll i=2; i*i<=100000; i++){
+    for(ll i=2; i*i<maxn; i++){
         if(!chk[i]){
-            for(ll j=i*i; j<=100000; j+=i) chk[j]=true;
+            for(ll j=i*i; j<maxn; j+=i) if(!chk[j]) chk[j]=i;
         }
     }
 
-    for(ll i=2; i<=100000; i++){
-        if(!chk[i]) primes.pb(i);
+    for(ll i=2; i<maxn; i++){
+        if(!chk[i]) chk[i]=i;
+    }
+
+    for(ll i=2; i<maxn; i++){
+        if(chk[i]==i) primes.pb(i);
     }
 }
 

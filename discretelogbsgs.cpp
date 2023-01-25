@@ -1,3 +1,4 @@
+// solution for a^x%mod=n in O(sqrt(mod))
 #include <bits/stdc++.h>
  
 using namespace std;
@@ -17,17 +18,38 @@ using namespace std;
 #define pi              acos(-1)
 #define mod             1000000007
 #define inf             1000000000000000001
-#define maxn            200001
+#define maxn            200001		
 
 
 
 
-mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-int my_rand(int l, int r) {
-    return uniform_int_distribution<int>(l, r) (rng);
+map <ll, ll> lhs;
+
+ll fastexpo(ll a, ll b, ll MOD){
+    if(b==0) return 1;
+    ll temp=fastexpo(a, b/2, MOD);
+    if(b & 1) return (((a*temp)%MOD)*temp)%MOD;
+    else return (temp*temp)%MOD; 
 }
 
- 
+ll dislog(ll a, ll n, ll MOD){
+    ll b=sqrt(MOD);
+    for(ll i=1; i<=b; i++){
+        lhs[fastexpo(a, b*i, MOD)]=i;
+    }
+    ll x=inf;
+    for(ll j=0; j<b; j++){
+        ll rhs=(n*fastexpo(a, j, MOD))%MOD;
+        if(lhs.find(rhs)!=lhs.end()){
+            x=min(x, lhs[rhs]*b-j);
+        }
+    }
+    return x;
+}
+
+
+
+
 int main()
 {
     ios::sync_with_stdio(0);
@@ -37,8 +59,9 @@ int main()
     ll t;
     cin>>t;
     while(t--){
-        ll n;
-        cin>>n;
+        ll a, n, MOD;
+        cin>>a>>n>>MOD;
     }
     return 0;
 }
+

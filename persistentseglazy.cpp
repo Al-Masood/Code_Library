@@ -16,19 +16,13 @@ using namespace std;
 #define nl              cout<<"\n";
 #define pi              acos(-1)
 #define mod             1000000007
-#define inf             999999999999999999
-#define maxn            100001
+#define inf             1000000000000000001
+#define maxn            200001	
 
 
 
 
-ll dt[maxn];
-ll seg[120*maxn];
-ll lazy[120*maxn];
-ll lef[120*maxn];
-ll rig[120*maxn];
-ll ver[maxn];
-ll nf=1;
+ll dt[maxn], seg[120*maxn], lazy[120*maxn], lef[120*maxn], rig[120*maxn], ver[maxn], nf=1;
  
 
 void build(ll st, ll en, ll nd){

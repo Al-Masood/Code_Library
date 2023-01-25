@@ -16,18 +16,20 @@ using namespace std;
 #define nl              cout<<"\n";
 #define pi              acos(-1)
 #define mod             1000000007
-#define inf             999999999999999999
-#define maxn            100001
+#define inf             1000000000000000001
+#define maxn            200001
+
 
 
 
 vector <ll> adj[maxn];
 bool visited[maxn];	
-void dfs(ll a){
-    if(!visited[a]){
-        visited[a]=true;
-        for(ll i=0; i<adj[a].size(); i++){
-            dfs(adj[a][i]);
+void dfs(ll u){
+    if(!visited[u]){
+        visited[u]=true;
+        for(ll i=0; i<adj[u].size(); i++){
+            ll v=adj[u][i];
+            dfs(v);
         }
     }
     return;

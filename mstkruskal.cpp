@@ -16,15 +16,13 @@ using namespace std;
 #define nl              cout<<"\n";
 #define pi              acos(-1)
 #define mod             1000000007
-#define inf             999999999999999999
-#define maxn            100001
+#define inf             1000000000000000001
+#define maxn            200001
 			
 
 
-ll cnt;
-ll par[maxn];
-ll rnk[maxn];
-ll sz[maxn];
+
+ll cnt, par[maxn], rnk[maxn], sz[maxn];
 
 void make_set(ll a){
     par[a]=a;
@@ -73,11 +71,11 @@ int main()
     ll t;
     t=1;
     while(t--){
-        cnt=0;
         ll n, m;
         cin>>n>>m;
         vector<vector <ll>> v(m, vector <ll> (3)); 
         ll ans=0;
+        cnt=n;
         l0(i, n) make_set(i);
         l0(i, m){
             ll a, b, c;

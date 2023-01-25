@@ -22,12 +22,27 @@ using namespace std;
 
 
 
-mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-int my_rand(int l, int r) {
-    return uniform_int_distribution<int>(l, r) (rng);
+vector <ll> extendeuclid(ll x, ll y){
+    if(x==0){
+        return {0, 1, y};
+    }
+    vector <ll> v=extendeuclid(y%x, x);
+    ll a=v[0];
+    ll b=v[1];
+    ll tempb=a;
+    ll tempa=b-(y/x)*a;
+    return{tempa, tempb, v[2]};
 }
 
- 
+vector <ll> extendeuclidwrap(ll x, ll y){
+    if(x>y){
+        vector <ll> v=extendeuclid(y, x);
+        return {v[1], v[0], v[2]};
+    }
+    return extendeuclid(x, y);
+}
+
+
 int main()
 {
     ios::sync_with_stdio(0);
@@ -37,8 +52,11 @@ int main()
     ll t;
     cin>>t;
     while(t--){
-        ll n;
-        cin>>n;
+        ll a, b;
+        cin>>a>>b;
+        vector <ll> v=extendeuclid(a, b);
+        cout<<v[0]<<" "<<v[1]<<" "<<v[2];
+        nl
     }
     return 0;
 }

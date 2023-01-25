@@ -22,12 +22,15 @@ using namespace std;
 
 
 
-mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-int my_rand(int l, int r) {
-    return uniform_int_distribution<int>(l, r) (rng);
+ll fastexpo(ll a, ll b){
+    if(b==0) return 1;
+    ll temp=fastexpo(a, b/2);
+    if(b & 1) return (((a*temp)%mod)*temp)%mod;
+    else return (temp*temp)%mod; 
 }
 
- 
+
+
 int main()
 {
     ios::sync_with_stdio(0);

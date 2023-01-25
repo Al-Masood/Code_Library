@@ -16,18 +16,14 @@ using namespace std;
 #define nl              cout<<"\n";
 #define pi              acos(-1)
 #define mod             1000000007
-#define inf             999999999999999999
-#define maxn            100001
+#define inf             1000000000000000001
+#define maxn            200001
+
 
 
 
 string s;
-ll n;
-ll ra[maxn], tempra[maxn];
-ll sa[maxn], tempsa[maxn];
-ll lcp[maxn], plcp[maxn];
-ll phi[maxn];
-ll cnt[maxn];
+ll n, ra[maxn], tempra[maxn], sa[maxn], tempsa[maxn], lcp[maxn], plcp[maxn], phi[maxn], cnt[maxn];
 
 void countingsort(ll k){
     memset(cnt, 0, sizeof cnt);

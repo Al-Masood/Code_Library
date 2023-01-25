@@ -16,8 +16,9 @@ using namespace std;
 #define nl              cout<<"\n";
 #define pi              acos(-1)
 #define mod             1000000007
-#define inf             999999999999999999
-#define maxn            100001
+#define inf             1000000000000000001
+#define maxn            200001
+
 
 
 
@@ -45,6 +46,15 @@ ll lca(ll u, ll v) {
     return par[u][0];
 }
 
+ll kth(ll u, ll d){
+    if(lev[u]-d<=0) return -1;
+    for(ll k=0, p=1; k<=18; k++, p*=2){
+        if(d&p){
+            u=par[u][k];
+        }
+    }
+    return u;
+}
 
 
 

@@ -16,8 +16,9 @@ using namespace std;
 #define nl              cout<<"\n";
 #define pi              acos(-1)
 #define mod             1000000007
-#define inf             999999999999999999
-#define maxn            100001
+#define inf             1000000000000000001
+#define maxn            200001
+
 
 
 
@@ -28,18 +29,19 @@ void factorial(){
     l1(i, maxn-1) fac[i]=(fac[i-1]*i)%mod;
 }
  
-ll pmod(ll a, ll b){
+ll fastexpo(ll a, ll b){
     if(b==0) return 1;
-    ll temp=pmod(a, b/2);
+    ll temp=fastexpo(a, b/2);
     if(b & 1) return (((a*temp)%mod)*temp)%mod;
     else return (temp*temp)%mod; 
 }
 
 ll ncr(ll n, ll r){
+    if(r>n) return 0;
     ll a=fac[n];
     ll b=fac[n-r]*fac[r];
     b%=mod;
-    b=pmod(b, mod-2);
+    b=fastexpo(b, mod-2);
     return (a*b)%mod;
 }
 

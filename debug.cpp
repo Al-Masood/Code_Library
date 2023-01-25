@@ -16,8 +16,8 @@ using namespace std;
 #define nl              cout<<"\n";
 #define pi              acos(-1)
 #define mod             1000000007
-#define inf             999999999999999999
-#define maxn            100001
+#define inf             1000000000000000001
+#define maxn            200001
 
 
 
@@ -37,6 +37,8 @@ struct printer {
 };
 #define debug() cerr<<"LINE "<<__LINE__<<" >> ", printer()
 #define dbg(x) "[",#x,": ",(x),"] "
+
+
 
 
 int main()

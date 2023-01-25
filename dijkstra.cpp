@@ -16,26 +16,26 @@ using namespace std;
 #define nl              cout<<"\n";
 #define pi              acos(-1)
 #define mod             1000000007
-#define inf             999999999999999999
-#define maxn            100001
+#define inf             1000000000000000001
+#define maxn            200001
 			
 
 
 
 vector <pair<ll, ll>> adj[maxn];
-vector <ll> dist(maxn, inf);
+vector <ll> dis(maxn, inf);
 vector <bool> visited(maxn);
 
 void dijkstra(ll s){
     priority_queue<pair<ll, ll>> pq;
     pq.push({0, s});
-    dist[s]=0;
+    dis[s]=0;
     while(!pq.empty()){
         ll u=pq.top().second;
         pq.pop();
         if(visited[u]) continue;
         visited[u]=true;
-        for(ll i=0; i<adj[u].size(); i++){e
+        for(ll i=0; i<adj[u].size(); i++){
            ll v=adj[u][i].first;
            ll w=adj[u][i].second;
            if(dis[v]>dis[u]+w){
@@ -45,6 +45,7 @@ void dijkstra(ll s){
         }
     }
 }
+
 
 
 

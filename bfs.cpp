@@ -16,8 +16,9 @@ using namespace std;
 #define nl              cout<<"\n";
 #define pi              acos(-1)
 #define mod             1000000007
-#define inf             999999999999999999
-#define maxn            100001
+#define inf             1000000000000000001
+#define maxn            200001	
+
 
 
 
@@ -30,16 +31,18 @@ void bfs(ll n, ll st){
     q.push(st);
     dis[st]=0;
     while(!q.empty()){
-        ll a=q.front();
+        ll u=q.front();
         q.pop();
-        for(ll i=0; i<adj[a].size(); i++){
-            if(dis[adj[a][i]]==-1){
-                dis[adj[a][i]]=dis[a]+1;
-                q.push(adj[a][i]);       
+        for(ll i=0; i<adj[u].size(); i++){
+            ll v=adj[u][i];
+            if(dis[v]==-1){
+                dis[v]=dis[u]+1;
+                q.push(v);       
             }
         }
     }
 }
+
 
 
 

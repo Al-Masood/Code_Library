@@ -22,47 +22,50 @@ using namespace std;
 
 
 
-struct node{
-    bool end;
-    node* next[26];
-    node(){
-        end=false;
-        for(ll i=0; i<26; i++){
-            next[i]=NULL;
-        }
-    }
-}*root;
+ll nxt[maxn][26];
+ll created[maxn];
+ll endmark[maxn];
+ll sz;
+char str[maxn];
 
-void insert(string str, ll len){
-    node* curr=root;
-    for(ll i=0; i<len; i++){
-        ll ch=str[i]-'a';
-        if(curr->next[ch]==NULL){
-            curr->next[ch]=new node();
-        }
-        curr=curr->next[ch];
+void clr(){
+    memset(nxt[0], 0, sizeof nxt[0]);
+    for(ll i=0; i<=sz; i++){
+        created[i]=0;
+        endmark[i]=0;
     }
-    curr->end=true;
+    sz=0;
 }
 
-bool search(string str, ll len){
-    node* curr=root;
+void insert(){
+    ll curr=0;
+    ll len=strlen(str);
     for(ll i=0; i<len; i++){
         ll ch=str[i]-'a';
-        if(curr->next[ch]==NULL){
+        if(!created[nxt[curr][ch]]){
+            nxt[curr][ch]=++sz;
+            memset(nxt[sz], 0, sizeof nxt[sz]);
+            created[nxt[curr][ch]]=1;
+        }
+        curr=nxt[curr][ch];
+    }
+    endmark[curr]++;
+}
+
+bool search(){
+    ll curr=0;
+    ll len=strlen(str);
+    for(ll i=0; i<len; i++){
+        ll ch=str[i]-'a';
+        if(!created[nxt[curr][ch]]){
             return false;
         }
-        curr=curr->next[ch];
+        curr=nxt[curr][ch];
     }
-    return curr->end;
+    if(endmark[curr]) return true;
+    else return false;
 }
 
-void del(node* curr){
-    for(ll i=0; i<26; i++){
-        if(curr->next[i]) del(curr->next[i]);
-    }
-    delete(curr);
-}
 
 
 
@@ -75,8 +78,19 @@ int main()
     ll t;
     cin>>t;
     while(t--){
-        ll n;
-        cin>>n;
+        ll n, q;
+        cin>>n>>q;
+        for(ll i=0; i<n; i++){
+            cin>>str;
+            insert();
+        }
+
+        for(ll i=0; i<q; i++){
+            cin>>str;
+            cout<<search()<<"\n";
+        }
+
+        clr();
     }
     return 0;
 }

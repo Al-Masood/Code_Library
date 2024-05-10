@@ -1,3 +1,7 @@
+/*
+ |f_n  | = |1 1| * |f_n-1|
+ |f_n-1|   |1 0|   |f_n-2|
+*/
 #include <bits/stdc++.h>
  
 using namespace std;
@@ -81,6 +85,8 @@ int main()
     while(t--){
         ll n;
         cin>>n;
+        calcexpo();
+        matexpo(n);
     }
     return 0;
 }
